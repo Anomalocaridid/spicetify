@@ -1,0 +1,66 @@
+# Original themes
+
+{{#each flavors}}
+[{{flavor}}]
+# Spicetify
+text               = {{text}}
+subtext            = {{text}}
+main               = {{base}}
+main-elevated      = {{surface0}}
+highlight          = {{surface0}}
+highlight-elevated = {{surface1}}
+sidebar            = {{mantle}}
+player             = {{crust}}
+card               = {{surface0}}
+shadow             = {{mantle}}
+selected-row       = {{overlay2}}
+button             = {{overlay1}}
+button-active      = {{overlay2}}
+button-disabled    = {{overlay0}}
+tab-active         = {{surface0}}
+notification       = {{surface0}}
+notification-error = {{red}}
+equalizer          = 000000
+misc               = {{surface1}}
+
+# Catppuccin
+	{{#each colors as | color colorName |}}
+{{colorName}}      = {{color}}
+	{{/each}}
+
+{{/each}}
+
+# Accented themes
+
+{{#each flavors}}
+	{{#each colors as | accentColor accentName |}}
+{{!-- ../ is needed to indicate variables from scope outside of the current loop --}}
+[{{../flavor}}-{{accentName}}]
+# Spicetify
+text               = {{accentColor}}
+subtext            = {{../text}}
+main               = {{../base}}
+main-elevated      = {{../surface0}}
+highlight          = {{../surface0}}
+highlight-elevated = {{../surface1}}
+sidebar            = {{../mantle}}
+player             = {{../crust}}
+card               = {{../surface0}}
+shadow             = {{../mantle}}
+selected-row       = {{../overlay2}}
+button             = {{../overlay1}}
+button-active      = {{accentColor}}
+button-disabled    = {{../overlay0}}
+tab-active         = {{../surface0}}
+notification       = {{../surface0}}
+notification-error = {{../red}}
+equalizer          = 000000
+misc               = {{../surface1}}
+
+# Catppuccin
+		{{#each ../colors as | color colorName |}}
+{{colorName}}      = {{color}}
+		{{/each}}
+
+	{{/each}}
+{{/each}}
