@@ -31,6 +31,14 @@
     "lavender",
   ];
 
+  // Flavours
+  const flavours = [
+    "frappe",
+    "latte",
+    "macchiato",
+    "mocha",
+  ];
+
   // Create our own section matching spotifys style and structure
   const Section = Spicetify.React.memo(() => {
     const colorScheme = Spicetify.Config.color_scheme || "frappe";
@@ -41,15 +49,20 @@
 
     Spicetify.React.useEffect(() => {
       const accent = selectedValue === "none" ? "text" : selectedValue;
+
       const properties = {
-        "--spice-text": `var(--spice-${selectedValue})`,
-        "--spice-button-active": `var(--spice-${selectedValue})`,
         "--spice-equalizer": document.querySelector(
           "body > script.marketplaceScript"
         )
           ? `url('https://github.com/catppuccin/spicetify/blob/main/catppuccin/assets/${colorScheme}/equalizer-animated-${accent}.gif?raw=true')`
           : `url('${colorScheme}/equalizer-animated-${accent}.gif')`,
       };
+
+      if (flavours.includes(colorScheme)) {
+        properties["--spice-text"] = `var(--spice-${selectedValue})`;
+        properties["--spice-button-active"] = `var(--spice-${selectedValue})`;
+      }
+
 
       Object.entries(properties).forEach(([property, value]) => {
         if (value.includes("none")) {
